@@ -78,7 +78,7 @@ class MotorRampExample:
         Crazyflie moves out of range)"""
         print("Connection to %s lost: %s" % (link_uri, msg))
 
-    def _disconnected(self, link_uri):0
+    def _disconnected(self, link_uri):
         """Callback when the Crazyflie is disconnected (called in all cases)"""
         print("Disconnected from %s" % link_uri)
 
@@ -89,24 +89,21 @@ class MotorRampExample:
         pitch = 0
         roll = 0
         yawrate = 0
+        x = 0
 
         # Unlock startup thrust protection
         self._cf.commander.send_setpoint(0, 0, 0, 0)
-
-        while thrust >= 35000:
-            self._cf.commander.send_setpoint(roll, pitch, yawrate, thrust)
+        time.sleep(0.1)
+        self._cf.commander.send_setpoint(roll, pitch, yawrate, 45000)
+        time.sleep(0.1)
+        self._cf.commander.send_setpoint(roll, pitch, yawrate, 45000)
+        time.sleep(0.1)
+        while x <= 40:
+            x = x+1
+            self._cf.commander.send_setpoint(roll, pitch, yawrate, 42500)
             time.sleep(0.1)
-            # the thrust will ramp up by 500 (thrust_step) until thrust is 35000
-            if thrust == 35000:
-                self._cf.commander.send_setpoint(roll, pitch, yawrate, 35000)
-                time.sleep(0.5)
-                #thrust will remain at 35000 for half second
-                self._cf.commander.send_setpoint(roll, pitch, yawrate, thrust)
-                #before returning to incremnting one more step
-            if thrust >= 40000:
-                thrust_mult = -1
-                #once the thrust value reaches 40000 begin to land
-            thrust += thrust_step * thrust_mult
+            
+                      
         self._cf.commander.send_setpoint(0, 0, 0, 0)
         # Make sure that the last packet leaves before the link is closed
         # since the message queue is not flushed before closing
