@@ -94,13 +94,13 @@ class MotorRampExample:
         # Unlock startup thrust protection
         self._cf.commander.send_setpoint(0, 0, 0, 0)
         time.sleep(0.1)
-        self._cf.commander.send_setpoint(roll, pitch, yawrate, 45000)
+        self._cf.commander.send_setpoint(roll, pitch, yawrate, 42000)
         time.sleep(0.1)
-        self._cf.commander.send_setpoint(roll, pitch, yawrate, 45000)
+        self._cf.commander.send_setpoint(roll, pitch, yawrate, 42000)
         time.sleep(0.1)
         while x <= 40:
             x = x+1
-            self._cf.commander.send_setpoint(roll, pitch, yawrate, 42500)
+            self._cf.commander.send_setpoint(roll, pitch, yawrate, 38000)
             time.sleep(0.1)
             
                       
