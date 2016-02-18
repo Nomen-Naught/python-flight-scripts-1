@@ -86,23 +86,75 @@ class MotorRampExample:
         thrust_mult = 1
         thrust_step = 500
         thrust = 35000
-        pitch = 0
-        roll = 0
+        pitch = 3
+        roll = 1.5
         yawrate = 0
         x = 0
 
         # Unlock startup thrust protection
         self._cf.commander.send_setpoint(0, 0, 0, 0)
         time.sleep(0.1)
-        self._cf.commander.send_setpoint(roll, pitch, yawrate, 40000)
+        self._cf.commander.send_setpoint(roll, pitch, yawrate, 37000)
         time.sleep(0.1)
-        self._cf.commander.send_setpoint(roll, pitch, yawrate, 40000)
+        self._cf.commander.send_setpoint(roll, pitch, yawrate, 37000)
         time.sleep(0.1)
-        while x <= 40:
+        while x <= 20:
             x = x+1
+            self._cf.commander.send_setpoint(roll, pitch, yawrate, 33000)
+            time.sleep(0.1)
             self._cf.commander.send_setpoint(roll, pitch, yawrate, 36000)
             time.sleep(0.1)
-            
+            #self._cf.param.set_value("flightmode.althold","True")
+            #time.sleep(0.01)
+        #self._cf.param.set_value("flightmode.althold","False")
+        self._cf.commander.send_setpoint(roll, pitch, yawrate, 33000)
+        time.sleep(0.1)
+        self._cf.commander.send_setpoint(roll, pitch, yawrate, 33000)
+        time.sleep(0.1)
+        self._cf.commander.send_setpoint(roll, pitch, yawrate, 33000)
+        time.sleep(0.1)
+        self._cf.commander.send_setpoint(roll, pitch, yawrate, 33000)
+        time.sleep(0.1)
+        self._cf.commander.send_setpoint(roll, pitch, yawrate, 32000)
+        time.sleep(0.1)
+        self._cf.commander.send_setpoint(roll, pitch, yawrate, 32000)
+        time.sleep(0.1)
+        self._cf.commander.send_setpoint(roll, pitch, yawrate, 32000)
+        time.sleep(0.1)
+        self._cf.commander.send_setpoint(roll, pitch, yawrate, 32000)
+        time.sleep(0.1)
+        self._cf.commander.send_setpoint(roll, pitch, yawrate, 31000)
+        time.sleep(0.1)
+        self._cf.commander.send_setpoint(roll, pitch, yawrate, 31000)
+        time.sleep(0.1)
+        self._cf.commander.send_setpoint(roll, pitch, yawrate, 31000)
+        time.sleep(0.1)
+        self._cf.commander.send_setpoint(roll, pitch, yawrate, 31000)
+        time.sleep(0.1)
+        self._cf.commander.send_setpoint(roll, pitch, yawrate, 30000)
+        time.sleep(0.1)
+        self._cf.commander.send_setpoint(roll, pitch, yawrate, 30000)
+        time.sleep(0.1)
+        self._cf.commander.send_setpoint(roll, pitch, yawrate, 30000)
+        time.sleep(0.1)
+        self._cf.commander.send_setpoint(roll, pitch, yawrate, 30000)
+        time.sleep(0.1)
+        self._cf.commander.send_setpoint(roll, pitch, yawrate, 29000)
+        time.sleep(0.1)
+        self._cf.commander.send_setpoint(roll, pitch, yawrate, 29000)
+        time.sleep(0.1)
+        self._cf.commander.send_setpoint(roll, pitch, yawrate, 29000)
+        time.sleep(0.1)
+        self._cf.commander.send_setpoint(roll, pitch, yawrate, 29000)
+        time.sleep(0.1)
+        self._cf.commander.send_setpoint(roll, pitch, yawrate, 28000)
+        time.sleep(0.1)
+        self._cf.commander.send_setpoint(roll, pitch, yawrate, 28000)
+        time.sleep(0.1)
+        self._cf.commander.send_setpoint(roll, pitch, yawrate, 27000)
+        time.sleep(0.1)
+        self._cf.commander.send_setpoint(roll, pitch, yawrate, 27000)
+        time.sleep(0.1)
                       
         self._cf.commander.send_setpoint(0, 0, 0, 0)
         # Make sure that the last packet leaves before the link is closed
