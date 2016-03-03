@@ -93,7 +93,7 @@ class MotorRampExample:
 
     def hover(self, roll, pitch, yawrate, thrust):
         x = 0
-        while x <= 10:
+        while x <= 15:
             #hover Loop
             x = x+1
             self._cf.commander.send_setpoint(roll, pitch, yawrate, 32000)
@@ -143,13 +143,6 @@ class MotorRampExample:
         time.sleep(0.1)
 
         self.take_off(roll, pitch, yawrate, thrust)
-
-        while y == 0:        
-            self.hover(roll, pitch, yawrate, thrust)    
-            pitch = 10    
-            self.next_spot(roll, pitch, yawrate, thrust)
-            pitch = 3
-            y = 1
             
         self.hover(roll, pitch, yawrate, thrust)
 

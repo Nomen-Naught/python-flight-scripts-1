@@ -130,11 +130,9 @@ class MotorRampExample:
         return
 
     def _ramp_motors(self):
-        thrust_mult = 1
-        thrust_step = 500
-        thrust = 35000
-        pitch = 3
-        roll = 1
+        thrust = 20000
+        pitch = 0
+        roll = 0
         yawrate = 0
         y = 0
         
@@ -142,23 +140,9 @@ class MotorRampExample:
         self._cf.commander.send_setpoint(0, 0, 0, 0)
         time.sleep(0.1)
 
-        self.take_off(roll, pitch, yawrate, thrust)
-
-        while y == 0:        
-            self.hover(roll, pitch, yawrate, thrust)    
-            pitch = 10    
-            self.next_spot(roll, pitch, yawrate, thrust)
-            pitch = 3
-            y = 1
-            
-        self.hover(roll, pitch, yawrate, thrust)
-
-        thrust = 33000
-        self.land(roll, pitch, yawrate, thrust)
-                      
-        self._cf.commander.send_setpoint(0, 0, 0, 0)
-        # Make sure that the last packet leaves before the link is closed
-        # since the message queue is not flushed before closing
+        while y == 0:
+            self._cf.commander.send_setpoint(roll, pitch, yawrate, thrust)
+            time.sleep(0.1)
 
         time.sleep(0.1)
         self._cf.close_link()
